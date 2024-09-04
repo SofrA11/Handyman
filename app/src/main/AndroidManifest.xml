@@ -19,7 +19,6 @@
     <application
         android:name=".HandyManApp"
         android:allowBackup="true"
-        tools:replace="android:allowBackup"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -27,20 +26,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light"
+        tools:replace="android:allowBackup"
         tools:targetApi="31">
         <activity
-            android:name=".activity.LocationActivity"
+            android:name=".activity.MyLocationLayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MyLocationDemoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LokacijaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MapaActivity"
             android:exported="false" />
 
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.handyman.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
 
         <activity
             android:name=".activity.RegisterActivity"
@@ -50,6 +53,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

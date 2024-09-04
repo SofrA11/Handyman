@@ -39,11 +39,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.draw.clip
 import coil.compose.rememberAsyncImagePainter
-import com.example.handyman.activity.LocationActivity
+import com.example.handyman.activity.LokacijaActivity
 import com.example.handyman.data.UserSession
 import com.example.handyman.view.HomePage
 import com.example.handyman.view.ProfileScreen
@@ -54,7 +55,7 @@ enum class MainRoute(value: String) {
     Settings("settings"),
     Logout("logout"),
     Home("home"),
-    Map("map")
+    Map("map"),
 }
 
 private data class DrawerMenu(val icon: ImageVector, val title: String, val route: String)
@@ -138,6 +139,13 @@ fun MainNavigation(
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
+                IconButton(onClick = {
+                    coroutineScope.launch {
+                        drawerState.close()
+                    }
+                }) {
+                    Icon(Icons.Filled.Menu, contentDescription = "Open Drawer")
+                }
                 DrawerContent(menus) { route ->
                     coroutineScope.launch {
                         drawerState.close()
@@ -145,8 +153,12 @@ fun MainNavigation(
                     navController.navigate(route)
                 }
             }
-        }
+        },
+        gesturesEnabled = false
+
     ) {
+        Box(Modifier.fillMaxSize()) {
+
         NavHost(navController = navController, startDestination = MainRoute.Home.name) {
             composable(MainRoute.Profile.name) {
                 ProfileScreen()
@@ -155,17 +167,29 @@ fun MainNavigation(
                 //AboutScreen(drawerState)
             }
             composable(MainRoute.Settings.name) {
-               // SettingsScreen(drawerState)
+                // SettingsScreen(drawerState)
             }
             composable(MainRoute.Logout.name) {
                 logoutUser(context)
             }
-            composable(MainRoute.Home.name){
-                HomePage()
+            composable(MainRoute.Home.name) {
+              HomePage()
             }
             composable(MainRoute.Map.name){
-
+                val intent = Intent(context, LokacijaActivity::class.java)
+                context.startActivity(intent)
             }
         }
+
+        // Optional: Provide a visible element to open drawer
+        // Adjust this to your needs, e.g., button or gesture recognizer
+        IconButton(onClick = {
+            coroutineScope.launch {
+                drawerState.open()
+            }
+        }) {
+            Icon(Icons.Filled.Menu, contentDescription = "Open Drawer")
+        }
+    }
     }
 }

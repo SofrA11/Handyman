@@ -297,7 +297,7 @@ fun loginUserInFirebase(email: String, pwd: String, context: Context) {
                         UserSession.brojTelefona = snapshot.child("brojTelefona").getValue(String::class.java)
                         UserSession.imageUrl = snapshot.child("imageUrl").getValue(String::class.java)
                         UserSession.uid = uid
-                        Toast.makeText(context, "Aaa3 ${UserSession.ime}", Toast.LENGTH_SHORT).show()
+
                         // Preusmeri na MainActivity
                         val intent = Intent(context, MainActivity::class.java)
                         context.startActivity(intent)

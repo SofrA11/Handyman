@@ -25,9 +25,6 @@ class LoginActivity : ComponentActivity() {
 
             val uid = currentUser.uid
             loadUserFromDatabase(uid)
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish() // Zatvaranje LoginActivity nakon preusmeravanja na MainActivity
         } else {
             setContent {
                 HandyManTheme {
@@ -35,6 +32,10 @@ class LoginActivity : ComponentActivity() {
                 }
             }
         }
+        /*
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish() // Zatvaranje LoginActivity nakon preusmeravanja na MainActivity*/
     }
     private fun loadUserFromDatabase(uid: String) {
         val database = FirebaseDatabase.getInstance("https://handyman-a2aa1-default-rtdb.europe-west1.firebasedatabase.app").reference.child("users").child(uid)

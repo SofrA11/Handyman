@@ -4,6 +4,8 @@ plugins {
 
     // Add the Google services Gradle plugin
     id("com.google.gms.google-services")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+
 }
 
 android {
@@ -54,6 +56,7 @@ android {
     }
 }
 
+
 dependencies {
 
     // Import the Firebase BoM
@@ -78,7 +81,18 @@ dependencies {
 
     //OSM(Open Street Map)
     implementation ("org.osmdroid:osmdroid-android:6.1.17")
+    implementation(libs.firebase.firestore.ktx)
 
+    // Google Maps Compose library
+    val mapsComposeVersion = "4.4.1"
+    implementation("com.google.maps.android:maps-compose:$mapsComposeVersion")
+    // Google Maps Compose utility library
+    implementation("com.google.maps.android:maps-compose-utils:$mapsComposeVersion")
+    // Google Maps Compose widgets library
+    implementation("com.google.maps.android:maps-compose-widgets:$mapsComposeVersion")
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+    implementation ("com.google.android.gms:play-services-location:21.2.0")
+    implementation ("com.google.accompanist:accompanist-permissions:latest-version")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
