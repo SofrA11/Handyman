@@ -2,6 +2,7 @@ package com.example.handyman.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.android.gms.maps.model.LatLng
 
 object UserSession {
     var mejl: String?=null
@@ -11,7 +12,8 @@ object UserSession {
     var brojTelefona: String?=null
     var imageUrl: String?=null
     var uid:String?=null
-
+    var location:LatLng?=null
+    var poslovi: MutableList<JobData>? = null
     fun clearSession() {
         mejl = null
         ime = null
@@ -20,6 +22,7 @@ object UserSession {
         brojTelefona = null
         imageUrl = null
         uid = null
+        location=null
     }
     fun saveUserSession(context: Context, isLoggedIn: Boolean) {
         val sharedPreferences: SharedPreferences = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)

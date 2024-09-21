@@ -8,5 +8,5 @@ data class UserData(
     var korisnickoIme: String?=null,
     var brojTelefona: String?=null,
     var imageUrl: String?=null,
-    var uid:String?=null
+    var uid:String?=null,
 ) {}

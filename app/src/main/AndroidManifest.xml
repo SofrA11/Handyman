@@ -13,8 +13,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:name=".HandyManApp"
@@ -28,17 +31,21 @@
         android:theme="@style/Theme.AppCompat.Light"
         tools:replace="android:allowBackup"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC0fEkOVfujxHBHJmjYueoQezV6lhgf390" />
         <activity
-            android:name=".activity.MyLocationLayerActivity"
+            android:name=".activity.JobActivity"
             android:exported="false" />
-        <activity
-            android:name=".activity.MyLocationDemoActivity"
-            android:exported="false" />
+
+        <service
+            android:name=".service.LocationService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name=".activity.LokacijaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.MapaActivity"
             android:exported="false" />
 
         <meta-data

@@ -39,6 +39,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -62,6 +63,7 @@ private data class DrawerMenu(val icon: ImageVector, val title: String, val rout
 
 private val menus = arrayOf(
     DrawerMenu(Icons.Filled.Face, "Профил", MainRoute.Profile.name),
+    DrawerMenu(Icons.Filled.Home, "Почетна страна", MainRoute.Home.name),
     DrawerMenu(Icons.Filled.Settings, "Подешавања", MainRoute.Settings.name),
     DrawerMenu(Icons.Filled.Info, "О нама", MainRoute.About.name),
     DrawerMenu(Icons.Filled.Logout, "Одјави се", MainRoute.Logout.name)
@@ -168,6 +170,7 @@ fun MainNavigation(
             }
             composable(MainRoute.Settings.name) {
                 // SettingsScreen(drawerState)
+                JobForm()
             }
             composable(MainRoute.Logout.name) {
                 logoutUser(context)

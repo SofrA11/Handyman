@@ -78,13 +78,20 @@ class LokacijaActivity : AppCompatActivity() {
             } else {
                 Text("Učitavanje lokacije...")
             }
-            Button(
-                onClick = { finish() }, // Završava aktivnost i vraća se na prethodnu
+            Box(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .fillMaxSize() // Ispunjava celu dostupnu veličinu ekrana
             ) {
-                Text("Nazad na glavnu stranu")
+                Button(
+                    onClick = { finish() }, // Završava aktivnost i vraća se na prethodnu
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter) // Postavlja dugme na dno ekrana
+                        .padding(16.dp)
+                ) {
+                    Text("Nazad na glavnu stranu")
+                }
             }
+
         }
     }
 

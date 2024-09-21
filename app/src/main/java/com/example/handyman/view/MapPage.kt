@@ -11,15 +11,26 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
+import com.example.handyman.data.UserSession
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
 
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.rememberCameraPositionState
+import androidx.compose.foundation.layout.Column
+
+import androidx.compose.foundation.layout.padding
+
+import androidx.compose.foundation.layout.width
+
+import androidx.compose.material3.Text
+import com.example.handyman.data.JobData
 
 @Composable
 fun MapPage() {
@@ -51,7 +62,6 @@ fun MapPage() {
             }
         }
     }
-
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
         cameraPositionState = cameraPositionState,
@@ -64,6 +74,22 @@ fun MapPage() {
         ),
         properties = MapProperties(
             isMyLocationEnabled = permissions.value // Omogućavanje prikazivanja trenutne lokacije na mapi
-        )
-    ) { }
+        ),
+
+    ) {
+
+        // Dodaj markere za svaki posao iz liste UserSession.poslovi
+        UserSession.poslovi?.forEach { job ->
+            Marker(
+                state  = MarkerState(position = LatLng(job.latitude, job.longitude)),
+                title = "${job.vrstaUsluge} ",
+                snippet = "Тежина посла: ${job.tezina} Цена: ${job.cena} поена ${job.mernaJedinica}", // Dodatne informacije koje se prikazuju kada korisnik klikne na marker
+                onClick = {
+                    true
+                }
+            ){
+
+            }
+        }
+    }
 }

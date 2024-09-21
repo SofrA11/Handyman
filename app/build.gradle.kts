@@ -93,6 +93,8 @@ dependencies {
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
     implementation ("com.google.android.gms:play-services-location:21.2.0")
     implementation ("com.google.accompanist:accompanist-permissions:latest-version")
+    implementation("androidx.compose.material3:material3:1.0.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
